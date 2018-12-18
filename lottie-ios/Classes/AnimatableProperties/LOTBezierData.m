@@ -8,6 +8,7 @@
 
 #import "LOTBezierData.h"
 #import "CGGeometry+LOTAdditions.h"
+#import "LOTLogger.h"
 
 @implementation LOTBezierData {
   CGPoint *_vertices;
@@ -58,7 +59,7 @@
   NSArray *outTangents = bezierData[@"o"];
   
   if (pointsArray.count == 0) {
-    NSLog(@"%s: Warning: shape has no vertices", __PRETTY_FUNCTION__);
+    [LOTLogger.shared log:[NSString stringWithFormat:@"%s: Warning: shape has no vertices", __PRETTY_FUNCTION__]];
     return ;
   }
   

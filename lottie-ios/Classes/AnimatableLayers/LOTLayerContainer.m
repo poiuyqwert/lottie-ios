@@ -14,6 +14,7 @@
 #import "LOTHelpers.h"
 #import "LOTMaskContainer.h"
 #import "LOTAsset.h"
+#import "LOTLogger.h"
 
 #if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
 #import "LOTCacheProvider.h"
@@ -177,7 +178,7 @@
     if (image) {
       _wrapperLayer.contents = (__bridge id _Nullable)(image.CGImage);
     } else {
-      NSLog(@"%s: Warn: image not found: %@", __PRETTY_FUNCTION__, asset.imageName);
+        [LOTLogger.shared log:[NSString stringWithFormat:@"%s: Warn: image not found: %@", __PRETTY_FUNCTION__, asset.imageName]];
     }
   }
 }

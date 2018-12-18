@@ -14,6 +14,7 @@
 #import "LOTHelpers.h"
 #import "LOTMask.h"
 #import "LOTHelpers.h"
+#import "LOTLogger.h"
 
 @implementation LOTLayer
 
@@ -167,7 +168,7 @@
       NSString *internalName = effect[@"mn"];
       NSString *typeString = effectNames[typeNumber];
       if (typeString) {
-        NSLog(@"%s: Warning: %@ effect not supported: %@ / %@", __PRETTY_FUNCTION__, typeString, internalName, name);
+        [LOTLogger.shared log:[NSString stringWithFormat:@"%s: Warning: %@ effect not supported: %@ / %@", __PRETTY_FUNCTION__, typeString, internalName, name]];
       }
     }
   }

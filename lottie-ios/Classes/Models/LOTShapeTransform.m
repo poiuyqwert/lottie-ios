@@ -8,6 +8,7 @@
 
 #import "LOTShapeTransform.h"
 #import "LOTHelpers.h"
+#import "LOTLogger.h"
 
 @implementation LOTShapeTransform
 
@@ -67,7 +68,7 @@
   BOOL hasSkewAxis = (skewAxis && [skewAxis[@"k"] isEqual:@0] == NO);
   
   if (hasSkew || hasSkewAxis) {
-    NSLog(@"%s: Warning: skew is not supported: %@", __PRETTY_FUNCTION__, name);
+    [LOTLogger.shared log:[NSString stringWithFormat:@"%s: Warning: skew is not supported: %@", __PRETTY_FUNCTION__, name]];
   }
 }
 
