@@ -11,6 +11,7 @@
 #import "LOTAssetGroup.h"
 #import "LOTLayerGroup.h"
 #import "LOTAnimationCache.h"
+#import "LOTLogger.m"
 
 @implementation LOTComposition
 
@@ -38,6 +39,10 @@
       jsonData = [[NSDataAsset alloc] initWithName:animationName].data;
     }
   }
+    
+    if (!jsonData) {
+        [[LOTLogger shared] log:[NSString stringWithFormat:@"Couldn't load file at path '%@'", filePath]];
+    }
   
   NSDictionary  *JSONObject = jsonData ? [NSJSONSerialization JSONObjectWithData:jsonData
                                                                          options:0 error:&error] : nil;
@@ -47,6 +52,13 @@
     laScene.cacheKey = animationName;
     return laScene;
   }
+    
+    if (error) {
+        [[LOTLogger shared] log:[NSString stringWithFormat:@"Couldn't parse json from '%@':\n%@", filePath, error]];
+    } else {
+        [[LOTLogger shared] log:[NSString stringWithFormat:@"Couldn't parse json from '%@'", filePath]];
+    }
+    
   NSLog(@"%s: Animation Not Found", __PRETTY_FUNCTION__);
   return nil;
 }
