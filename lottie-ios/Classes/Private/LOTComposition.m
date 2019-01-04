@@ -11,7 +11,7 @@
 #import "LOTAssetGroup.h"
 #import "LOTLayerGroup.h"
 #import "LOTAnimationCache.h"
-#import "LOTLogger.m"
+#import "LOTLogger.h"
 
 @implementation LOTComposition
 
@@ -41,7 +41,7 @@
   }
     
     if (!jsonData) {
-        [[LOTLogger shared] log:[NSString stringWithFormat:@"Couldn't load file at path '%@'", filePath]];
+        [[LOTLogger shared] log:[NSString stringWithFormat:@"Couldn't load animation '%@' file at path:\n\t%@\nIn bundle:\n\t%@", animationName, filePath, bundle]];
     }
   
   NSDictionary  *JSONObject = jsonData ? [NSJSONSerialization JSONObjectWithData:jsonData
